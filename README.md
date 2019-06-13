@@ -1,6 +1,29 @@
-Dice
-====
+# Inverse Homography Reprojection
 
-A dice roller of two, six sided dice roller.  You may change the number of dice faces to any number between 2 and 12.
-The maximum number of dice faces can be changed to the max unsigned integer or NSUInteger max.
+Inverse homography H reprojection at fractional pixels at target image
 
+
+```python
+import cv2
+import numpy as np
+
+source = np.float32([[0, 0], [100, 0], [100, 100], [0, 100]])
+dest = np.float32([[0, 0], [-1000, 0], [-1000, -1000], [0, -1000]])
+
+points = np.float32([[[50, 50]]])
+
+homography, _ = cv2.findHomography(source, dest)
+
+transformed = cv2.perspectiveTransform(points, homography)
+
+print(transformed)
+# => [[[-500. -500.]]]
+
+homography_inverse = np.linalg.inv(homography)
+
+detransformed = cv2.perspectiveTransform(transformed, homography_inverse)
+
+print(detransformed)
+# => [[[50. 50.]]]
+
+```
