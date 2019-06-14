@@ -2,8 +2,8 @@
 //  main.cpp
 //  affine
 //
-//  Created by Dan Park on 3/19/19.
-//  Copyright © 2019 Dan Park. All rights reserved.
+//  Created by Dan Park on Jan 31, 2013.
+//  Copyright © 2013 Dan Park. All rights reserved.
 //
 
 #include <vector>
